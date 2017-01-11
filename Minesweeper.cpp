@@ -77,9 +77,95 @@ void Level ()
 
 
 }
-int main()
+
+void myMove(int *x, int *y, char &flag)
+{   cout<<NEWLINE;
+    cout<<"Enter your move adding 'y' if you want to put a flag or 'n' if you don't"<<endl;
+    cout<<"(row, col, flag) ->";
+    cin>>*x;
+    cin>>*y;
+    cin>>flag;
+
+}
+
+bool Valid(int row, int col)
 {
+    return(row>=0)&&(row<WIDTH)&&(col>=0)&&(col<LENGTH);
+}
+
+bool Mine(char board[MAXWIDTH][MAXLENGTH], int row, int col)
+{
+    if(board[row][col]==char(4))
+      return true;
+    else return false;
+}
+
+void printBoard(char myPlayBoard[MAXWIDTH][MAXLENGTH])
+{
+    int i,j;
+    cout<<"   ";
+    for(j=0;j<LENGTH;j++)
+     if(j>=0&&j<=9)
+         cout<<'0'<<j<<" ";
+     else cout<<j<<" ";
+    cout<<NEWLINE<<NEWLINE;
+    for(i=0;i<WIDTH;i++)
+    {   if(i>=0&&i<=9)
+        cout<<'0'<<i<<"  ";
+       else cout<<i<<"  ";
+         for(j=0;j<LENGTH;j++)
+          cout<<myPlayBoard[i][j]<<"  ";
+        cout<<NEWLINE;
+    }
+
+}
+
+void initialiseBoard(char myPlayBoard[MAXWIDTH][MAXLENGTH], char realBoard[MAXWIDTH][MAXLENGTH])
+{
+    int i,j;
+    srand(time (NULL));
+    for(i=0;i<WIDTH;i++)
+    {
+        for(j=0;j<LENGTH;j++)
+         myPlayBoard[i][j]=realBoard[i][j]='#';
+    }
+
+}
+
+
+void placeMines(char realBoard[MAXWIDTH][MAXLENGTH], int mines[][2])
+{
+    int i,x,y;
+    bool mark[MAXLENGTH*MAXWIDTH];
+
+    memset (mark, false, sizeof (mark));
+
+    i=0;
+    while(i<MINES)
+    {
+        int random=rand()%(LENGTH*WIDTH);
+        x=random/LENGTH;
+        y=random%LENGTH;
+       if (mark[random] == false)
+       {
+           mines[i][0]=x;
+           mines[i][1]=y;
+           realBoard[mines[i][0]][mines[i][1]] = char(4);
+           mark[random]=true;
+           i++;
+       }
+    }
+  return;
+}
+
+
+int main()
+{ char realBoard[MAXWIDTH][MAXLENGTH];
+int mines[MAXMINES][2];
+char myPlayBoard[MAXWIDTH][MAXLENGTH];
    Level();
+   initialiseBoard(myPlayBoard, realBoard);
+   printBoard(myPlayBoard);
 
  return 0;
 }
