@@ -45,7 +45,7 @@ void Level ()
         cout<<"     Advanced"<<NEWLINE<<"   o 99 mines"<<NEWLINE<<"     16x30 tile grid"<<NEWLINE<<NEWLINE;
         clock_t cl;
         cl = clock();
-        _sleep(2800);
+        _sleep(2700);
         system("CLS");
 
     }
@@ -64,7 +64,7 @@ void Level ()
         cout<<"     Advanced"<<NEWLINE<<"   o 99 mines"<<NEWLINE<<"     16x30 tile grid"<<NEWLINE<<NEWLINE;
         clock_t cl;
         cl = clock();
-        _sleep(2800);
+        _sleep(2700);
         system("CLS");
     }
 
@@ -82,7 +82,7 @@ void Level ()
         cout<<"     Advanced"<<NEWLINE<<"   "<<char(16)<<" 99 mines"<<NEWLINE<<"     16x30 tile grid"<<NEWLINE<<NEWLINE;
         clock_t cl;
         cl = clock();
-        _sleep(2800);
+        _sleep(2700);
         system("CLS");
     }
 
@@ -115,6 +115,17 @@ bool Mine(char board[MAXWIDTH][MAXLENGTH], int row, int col)
 void printBoard(char myPlayBoard[MAXWIDTH][MAXLENGTH])
 {
     int i,j;
+    if(LENGTH==9)
+    {for(i=0;i<LENGTH*2;i++)
+    cout<<" ";
+    cout<<char(1);}
+ else if(LENGTH==16)
+       {for(i=0;i<LENGTH*2-3;i++)
+        cout<<" ";
+        cout<<char(1);
+
+       }
+    cout<<NEWLINE<<NEWLINE;
     cout<<"     ";
     for(j=0; j<LENGTH; j++)
         if(j>=0&&j<=9)
