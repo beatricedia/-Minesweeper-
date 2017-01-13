@@ -115,22 +115,34 @@ bool Mine(char board[MAXWIDTH][MAXLENGTH], int row, int col)
 void printBoard(char myPlayBoard[MAXWIDTH][MAXLENGTH])
 {
     int i,j;
-    cout<<"    ";
+    cout<<"     ";
     for(j=0; j<LENGTH; j++)
         if(j>=0&&j<=9)
             cout<<'0'<<j<<" ";
         else cout<<j<<" ";
-    cout<<NEWLINE<<NEWLINE;
+    cout<<NEWLINE;
+    cout<<"    "<<char(201);
+    for(j=0;j<LENGTH*2+LENGTH;j++)
+    cout<<char(205);
+    cout<<char(187);
+    cout<<NEWLINE;
     for(i=0; i<WIDTH; i++)
     {
         if(i>=0&&i<=9)
-            cout<<" "<<'0'<<i<<"  ";
-        else cout<<" "<<i<<"  ";
+            cout<<" "<<'0'<<i<<" "<<char(186)<<" ";
+        else cout<<" "<<i<<" "<<char(186)<<" ";
         for(j=0; j<LENGTH; j++)
             cout<<myPlayBoard[i][j]<<"  ";
+            cout<<"\b"<<char(186);
         cout<<NEWLINE;
     }
+    cout<<"    "<<char(200);
+     for(j=0;j<LENGTH*2+LENGTH;j++)
+      cout<<char(205);
+      cout<<char(188);
+      cout<<NEWLINE;
 }
+
 
 void initialiseBoard(char myPlayBoard[MAXWIDTH][MAXLENGTH], char realBoard[MAXWIDTH][MAXLENGTH])
 {
