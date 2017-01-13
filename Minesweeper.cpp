@@ -139,15 +139,10 @@ void initialiseBoard(char myPlayBoard[MAXWIDTH][MAXLENGTH], char realBoard[MAXWI
     for(i=0; i<WIDTH; i++)
     {
         for(j=0; j<LENGTH; j++)
-            myPlayBoard[i][j]=realBoard[i][j]='#';
+            myPlayBoard[i][j]=realBoard[i][j]=char(223);
     }
 }
 
-void cheatMinesweeper (char realBoard[MAXWIDTH][MAXLENGTH])
-{
-    cout<<"The mines locations are: "<<NEWLINE;
-    printBoard (realBoard);
-}
 
 void Replace(char board[MAXWIDTH][MAXLENGTH], int row, int col)
 {
@@ -158,7 +153,7 @@ void Replace(char board[MAXWIDTH][MAXLENGTH], int row, int col)
             if(board[i][j]!=char(4))
             {
                 board[i][j]=char(4);
-                board[row][col]='#';
+                board[row][col]=char(223);
                 return;
             }
     }
@@ -238,7 +233,7 @@ int countMines(char realBoard[MAXWIDTH][MAXLENGTH], int row, int col, int mines[
 bool playGameTill(char realBoard[MAXWIDTH][MAXLENGTH], char myPlayBoard[MAXWIDTH][MAXLENGTH],int row, int col,int mines[][2],int *moves, char flag)
 {
     int i,j;
-    if(myPlayBoard[row][col]!='#')
+    if(myPlayBoard[row][col]!=char(223))
         return false;
     if(flag==NOFLAG)
     {
@@ -341,11 +336,11 @@ void playMinesweeper()
     int moves=LENGTH*WIDTH-MINES;
     initialiseBoard(myPlayBoard,realBoard);
     placeMines(realBoard, mines);
-    //cheatMinesweeper(realBoard);
+
     int IndexMove=0;
     while(gameover==false)
     {
-        //cout<<NEWLINE<<"Current status of Board "<<NEWLINE;
+
         cout<<NEWLINE;
         printBoard (myPlayBoard);
         myMove(&x,&y,flag);
